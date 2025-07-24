@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.2.0)
 project(serial)
 
 if(APPLE)
@@ -18,9 +18,9 @@ endif()
 
 ## Sources
 set(serial_SRCS
-    src/serial.cc
-    include/serial/serial.h
-    include/serial/v8stdint.h
+        src/serial.cc
+        include/serial/serial.h
+        include/serial/v8stdint.h
 )
 if(APPLE)
     # If OSX
@@ -46,11 +46,6 @@ else()
     target_link_libraries(${PROJECT_NAME} setupapi)
 endif()
 
-## Uncomment for example
-add_executable(serial_example examples/serial_example.cc)
-add_dependencies(serial_example ${PROJECT_NAME})
-target_link_libraries(serial_example ${PROJECT_NAME})
-
 ## Include headers
-include_directories(include)
+target_include_directories(serial PUBLIC include)
 
